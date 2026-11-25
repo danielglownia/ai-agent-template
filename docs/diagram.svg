@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" width="1200" height="690" role="img" aria-labelledby="t d" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <title id="t">Scripts fetch. The LLM thinks. Git remembers.</title>
+  <desc id="d">Three steps pass their work through one Git repo. Step 1, Collect: a script on a CI schedule gets new data and commits it. Step 2, Think: a scheduled LLM agent reads the playbook and the new items, then writes a small JSON summary. Step 3, Render: a script turns items and summary into one HTML page. The page is published and a notification goes to you.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#3b4256"/>
+    </marker>
+  </defs>
+
+  <!-- canvas -->
+  <rect x="0" y="0" width="1200" height="690" rx="18" fill="#f5f6fb"/>
+
+  <!-- title -->
+  <text x="600" y="58" text-anchor="middle" font-size="32" font-weight="700" fill="#141824">Scripts fetch. <tspan fill="#b85c00">The LLM thinks.</tspan> Git remembers.</text>
+  <text x="600" y="88" text-anchor="middle" font-size="16" fill="#5a6278">One repo. Two timers. One HTML report in your pocket.</text>
+
+  <!-- sources -->
+  <rect x="24" y="170" width="140" height="110" rx="12" fill="#ffffff" stroke="#c9cedc" stroke-width="1.5"/>
+  <text x="94" y="214" text-anchor="middle" font-size="16" font-weight="700" fill="#141824">Your sources</text>
+  <text x="94" y="238" text-anchor="middle" font-size="13" fill="#5a6278">feeds, APIs, files</text>
+  <line x1="164" y1="225" x2="210" y2="225" stroke="#3b4256" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- 1 collect (code) -->
+  <rect x="214" y="130" width="230" height="190" rx="14" fill="#e7edfd" stroke="#2f55d4" stroke-width="2"/>
+  <circle cx="246" cy="164" r="15" fill="#2f55d4"/>
+  <text x="246" y="170" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">1</text>
+  <text x="270" y="170" font-size="19" font-weight="700" fill="#141824">COLLECT</text>
+  <rect x="376" y="151" width="52" height="24" rx="12" fill="#2f55d4"/>
+  <text x="402" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">CODE</text>
+  <text x="232" y="206" font-size="15" font-weight="700" fill="#2443ad">Scripts fetch.</text>
+  <text font-size="13" fill="#2b3147">
+    <tspan x="232" y="232">A script runs on a timer.</tspan>
+    <tspan x="232" y="251">It gets new data, drops</tspan>
+    <tspan x="232" y="270">repeats, and commits it.</tspan>
+  </text>
+  <g fill="none" stroke="#2443ad" stroke-width="1.6"><circle cx="240" cy="297" r="7"/><path d="M240 293 v4 h3"/></g>
+  <text x="253" y="301" font-size="12" font-weight="600" fill="#2443ad">CI schedule</text>
+
+  <!-- 2 think (llm) -->
+  <rect x="485" y="130" width="250" height="190" rx="14" fill="#fdefdc" stroke="#d9730d" stroke-width="3"/>
+  <circle cx="517" cy="164" r="15" fill="#d9730d"/>
+  <text x="517" y="170" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">2</text>
+  <text x="541" y="170" font-size="19" font-weight="700" fill="#141824">THINK</text>
+  <rect x="673" y="151" width="46" height="24" rx="12" fill="#d9730d"/>
+  <text x="696" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">LLM</text>
+  <text x="503" y="206" font-size="15" font-weight="700" fill="#a34f00">The LLM thinks.</text>
+  <text font-size="13" fill="#2b3147">
+    <tspan x="503" y="232">An agent wakes up, reads the</tspan>
+    <tspan x="503" y="251">playbook, judges the new</tspan>
+    <tspan x="503" y="270">items, and writes a summary.</tspan>
+  </text>
+  <g fill="none" stroke="#a34f00" stroke-width="1.6"><circle cx="511" cy="297" r="7"/><path d="M511 293 v4 h3"/></g>
+  <text x="524" y="301" font-size="12" font-weight="600" fill="#a34f00">Scheduled task (Claude, ChatGPT)</text>
+
+  <!-- 3 render (code) -->
+  <rect x="776" y="130" width="230" height="190" rx="14" fill="#e7edfd" stroke="#2f55d4" stroke-width="2"/>
+  <circle cx="808" cy="164" r="15" fill="#2f55d4"/>
+  <text x="808" y="170" text-anchor="middle" font-size="16" font-weight="700" fill="#ffffff">3</text>
+  <text x="832" y="170" font-size="19" font-weight="700" fill="#141824">RENDER</text>
+  <rect x="938" y="151" width="52" height="24" rx="12" fill="#2f55d4"/>
+  <text x="964" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff">CODE</text>
+  <text x="794" y="206" font-size="15" font-weight="700" fill="#2443ad">Scripts build.</text>
+  <text font-size="13" fill="#2b3147">
+    <tspan x="794" y="232">A script turns items and</tspan>
+    <tspan x="794" y="251">summary into one HTML</tspan>
+    <tspan x="794" y="270">page. Same look every run.</tspan>
+  </text>
+  <text x="794" y="301" font-size="12" font-weight="600" fill="#2443ad">The agent starts it</text>
+
+  <!-- report + you -->
+  <line x1="1006" y1="225" x2="1052" y2="225" stroke="#3b4256" stroke-width="2" marker-end="url(#arrow)"/>
+  <rect x="1056" y="170" width="120" height="110" rx="12" fill="#ffffff" stroke="#c9cedc" stroke-width="1.5"/>
+  <text x="1116" y="208" text-anchor="middle" font-size="16" font-weight="700" fill="#141824">You</text>
+  <text x="1116" y="232" text-anchor="middle" font-size="13" fill="#5a6278">HTML report</text>
+  <text x="1116" y="251" text-anchor="middle" font-size="13" fill="#5a6278">+ a notification</text>
+
+  <!-- arrows between the steps and the repo -->
+  <g stroke="#3b4256" stroke-width="2" fill="none">
+    <line x1="329" y1="320" x2="329" y2="402" marker-end="url(#arrow)"/>
+    <line x1="540" y1="406" x2="540" y2="324" marker-end="url(#arrow)"/>
+    <line x1="665" y1="320" x2="665" y2="402" marker-end="url(#arrow)"/>
+    <line x1="805" y1="406" x2="805" y2="324" marker-end="url(#arrow)"/>
+    <line x1="916" y1="320" x2="916" y2="402" marker-end="url(#arrow)"/>
+  </g>
+  <g font-size="13" fill="#3b4256">
+    <text x="339" y="366">new items</text>
+    <text x="550" y="358">playbook +</text>
+    <text x="550" y="375">new items</text>
+    <text x="675" y="366">summary</text>
+    <text x="815" y="358">items +</text>
+    <text x="815" y="375">summary</text>
+    <text x="926" y="366">HTML page</text>
+  </g>
+
+  <!-- the repo -->
+  <rect x="214" y="406" width="792" height="150" rx="14" fill="#1c2233"/>
+  <text x="236" y="440" font-size="19" font-weight="700" fill="#ffffff">THE REPO</text>
+  <text x="350" y="440" font-size="15" font-weight="700" fill="#9fb4ff">Git remembers.</text>
+  <text x="988" y="440" text-anchor="end" font-size="13" fill="#b9c0d4">Each run starts new. The repo holds what the run must know.</text>
+
+  <g font-family="ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="14" font-weight="700" fill="#ffffff">
+    <rect x="234" y="462" width="170" height="74" rx="10" fill="#2b3350"/>
+    <text x="250" y="492">data/</text>
+    <rect x="420" y="462" width="164" height="74" rx="10" fill="#2b3350"/>
+    <text x="436" y="492">PLAYBOOK.md</text>
+    <rect x="600" y="462" width="230" height="74" rx="10" fill="#2b3350"/>
+    <text x="616" y="492">reports/history/</text>
+    <rect x="846" y="462" width="140" height="74" rx="10" fill="#2b3350"/>
+    <text x="862" y="492">site/</text>
+  </g>
+  <g font-size="12.5" fill="#b9c0d4">
+    <text x="250" y="516">collected items</text>
+    <text x="436" y="516">the agent's instructions</text>
+    <text x="616" y="516">frozen items + written summaries</text>
+    <text x="862" y="516">the report page</text>
+  </g>
+
+  <!-- legend -->
+  <g font-size="13.5" fill="#2b3147">
+    <rect x="214" y="589" width="16" height="16" rx="4" fill="#e7edfd" stroke="#2f55d4" stroke-width="2"/>
+    <text x="238" y="602"><tspan font-weight="700">Code:</tspan> same result every run</text>
+    <rect x="474" y="589" width="16" height="16" rx="4" fill="#fdefdc" stroke="#d9730d" stroke-width="2"/>
+    <text x="498" y="602"><tspan font-weight="700">LLM:</tspan> judgment, and only judgment</text>
+    <rect x="770" y="589" width="16" height="16" rx="4" fill="#1c2233"/>
+    <text x="794" y="602"><tspan font-weight="700">Repo:</tspan> memory between runs</text>
+  </g>
+  <text x="600" y="652" text-anchor="middle" font-size="15" fill="#5a6278">The LLM does not write HTML. It fills in a small JSON form, and code does the rest.</text>
+</svg>

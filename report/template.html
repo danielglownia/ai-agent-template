@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><!--TITLE--></title>
+<style>
+/* One self-contained page: no external fonts, scripts or images, so it works wherever you publish it.
+   Layout: the verdict first (question, headline, overview), then the agent's sections,
+   then the items as one card per source. Change the colours in :root to make it yours. */
+:root {
+  --bg: #f5f6fb; --surface: #ffffff; --ink: #141824; --ink-2: #454c60; --muted: #747b90;
+  --line: #dcdfea; --accent: #2f55d4; --accent-ink: #2443ad; --think: #d9730d;
+  --tag: #eceef5; --bad: #c93535;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-data: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #101219; --surface: #181b24; --ink: #eef0f6; --ink-2: #b6bccb; --muted: #8a91a4;
+    --line: #2a2f3c; --accent: #8493f0; --accent-ink: #a9b4f8; --think: #f0a04b;
+    --tag: #222632; --bad: #f08080; color-scheme: dark;
+  }
+}
+* { box-sizing: border-box; }
+body { margin: 0; padding: 28px 16px 56px; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }
+a { color: var(--accent-ink); text-decoration: none; }
+a:hover { text-decoration: underline; }
+a:focus-visible, select:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+.wrap { max-width: 980px; margin: 0 auto; display: grid; gap: 26px; }
+.eyebrow { font-family: var(--font-data); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.num { font-family: var(--font-data); font-variant-numeric: tabular-nums; }
+
+header { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; }
+header h1 { font-size: clamp(30px, 5.4vw, 44px); line-height: 1.05; letter-spacing: -.02em; font-weight: 800; }
+header .sub { color: var(--ink-2); margin-top: 6px; }
+.picker { display: flex; align-items: center; gap: 8px; }
+.picker label { font-size: 13px; color: var(--ink-2); }
+select { font: inherit; font-size: 14px; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; }
+
+.day { display: grid; gap: 22px; }
+.day[hidden] { display: none; }
+.daymeta { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: baseline; }
+.daymeta .date { font-size: clamp(20px, 3vw, 24px); font-weight: 700; line-height: 1.15; }
+.daymeta .count { color: var(--muted); font-size: 13.5px; }
+
+.verdict { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--think); border-radius: var(--radius); padding: 20px clamp(16px, 3vw, 26px); display: grid; gap: 10px; }
+.verdict .question { margin: 0; font-family: var(--font-data); font-size: 12px; line-height: 1.45; color: var(--muted); max-width: 72ch; }
+.verdict .headline { font-size: clamp(20px, 3vw, 26px); font-weight: 700; line-height: 1.2; letter-spacing: -.01em; max-width: 44ch; }
+.verdict .overview { color: var(--ink-2); margin: 0; max-width: 78ch; }
+.verdict.empty { border-left-color: var(--line); }
+.verdict.empty .headline { color: var(--ink-2); }
+.notice { margin: 0; color: var(--muted); font-size: 13.5px; }
+
+.cards { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 820px) { .cards { grid-template-columns: 1fr 1fr; } .cards > .wide { grid-column: 1 / -1; } }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px clamp(14px, 2.4vw, 22px); display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card h3 { font-size: 18px; line-height: 1.2; }
+.card p { margin: 0; color: var(--ink-2); font-size: 14.5px; }
+.card ul.points { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14.5px; display: grid; gap: 6px; }
+.card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.card-head .n { color: var(--muted); font-size: 12.5px; white-space: nowrap; }
+
+.group { display: grid; gap: 14px; }
+.gname { font-family: var(--font-data); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.gname::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.items { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.item { padding-top: 12px; border-top: 1px dashed var(--line); display: grid; gap: 5px; min-width: 0; }
+.item .t { font-weight: 600; font-size: 15px; line-height: 1.3; overflow-wrap: anywhere; }
+.item .t a { color: var(--ink); }
+.item .t a:hover { color: var(--accent-ink); }
+.item .m { font-size: 12px; color: var(--muted); }
+.item .s { margin: 0; color: var(--ink-2); font-size: 14px; overflow-wrap: anywhere; }
+.item .s.raw { color: var(--muted); font-style: italic; }
+.item .go { font-size: 13px; }
+
+details.sources { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px clamp(14px, 2.4vw, 22px); }
+details.sources summary { cursor: pointer; font-size: 13.5px; color: var(--ink-2); }
+details.sources ul { margin: 10px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 4px 16px; font-size: 13px; }
+details.sources li { display: flex; justify-content: space-between; gap: 8px; color: var(--ink-2); }
+details.sources li.bad { color: var(--bad); }
+details.sources li .num { color: var(--muted); }
+
+.archive { display: grid; gap: 8px; }
+.archive ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.archive a, .archive .gone { display: inline-block; font-family: var(--font-data); font-size: 12.5px; padding: 4px 8px; border-radius: 6px; }
+.archive a { border: 1px solid var(--line); background: var(--surface); color: var(--ink-2); }
+.archive a.cur { border-color: var(--accent); color: var(--accent-ink); }
+.archive .gone { border: 1px dashed var(--line); color: var(--muted); }
+footer { color: var(--muted); font-size: 12.5px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+<!--BODY-->
+</div>
+<!--SCRIPT-->
+</body>
+</html>

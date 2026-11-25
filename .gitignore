@@ -170,7 +170,7 @@ conda-meta/
 .ropeproject
 
 # mkdocs/Zensical documentation
-/site
+# /site  (not ignored here: site/index.html is the published report page)
 
 # mypy
 .mypy_cache/
@@ -221,3 +221,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Scratch folder of `python demo.py`
+.demo/

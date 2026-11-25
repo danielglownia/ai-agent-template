@@ -1,4 +1,4 @@
-# ai-agent-template
+# Your Automation Just Got a Brain
 
 **Scripts fetch. The LLM thinks. Git remembers.**
 

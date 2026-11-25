@@ -1,0 +1,33 @@
+{
+  "report_name": "My Smart Report",
+  "tagline": "Say in one line what this report covers.",
+  "question": "Write the one question that each report must answer.",
+  "reader": "Describe the reader in one sentence: who they are and what they need from this report.",
+  "timezone": "UTC",
+  "lookback_days": 7,
+  "max_new_per_source": 10,
+  "index_reports": 30,
+  "report_url": "",
+  "sources": [
+    {
+      "id": "example-feed",
+      "name": "Example feed",
+      "group": "Group one",
+      "type": "rss",
+      "url": "https://example.com/feed.xml",
+      "keywords": [],
+      "enabled": false
+    },
+    {
+      "id": "example-api",
+      "name": "Example API",
+      "group": "Group two",
+      "type": "json",
+      "url": "https://example.com/api/items",
+      "headers": {"Authorization": "Bearer ${EXAMPLE_API_KEY}"},
+      "items_path": "results",
+      "fields": {"title": "name", "url": "link", "published": "created_at", "summary": "description"},
+      "enabled": false
+    }
+  ]
+}

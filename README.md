@@ -40,7 +40,7 @@ reads the new data in this repo, decides what matters, and sends you an HTML rep
 You drink your coffee.
 
 <p align="center">
-  <img src="docs/diagram.svg" alt="Three steps pass their work through one Git repo. Collect: a script on a CI schedule gets new data. Think: a scheduled LLM agent reads the playbook and the new items, and writes a summary. Render: a script builds one HTML page. You get the report and a notification." width="100%">
+  <img src="docs/diagram.svg" alt="Three steps pass their work through one Git repo. Collect: a script on a GitHub Actions schedule gets new data. Think: a scheduled LLM agent reads the playbook and the new items, and writes a summary. Render: a script builds one HTML page. You get the report and a notification." width="100%">
 </p>
 
 An LLM is good at judgment. It is a bad cron job, a bad database and a moody web designer.
@@ -48,7 +48,7 @@ So each part of the system gets one job:
 
 | Part | Job | Who does it |
 |---|---|---|
-| **Collect** | Get new data. Remove repeats. Commit the result. | A script, on a CI schedule |
+| **Collect** | Get new data. Remove repeats. Commit the result. | A script, on a GitHub Actions schedule |
 | **Think** | Read the new items. Decide what matters. Write a short summary. | An LLM agent, in a scheduled task |
 | **Render** | Put the items and the summary into one HTML page. | A script |
 | **Remember** | Keep the instructions, the data and each past report. | This repo |
@@ -56,6 +56,16 @@ So each part of the system gets one job:
 The LLM does not write HTML. It fills in a small JSON file, and code does the rest.
 As a result, each report has the same layout, each item comes from real data, and you can
 test everything but the opinions.
+
+## Where it runs
+
+Two schedules run the system. Neither needs a server.
+
+- **GitHub Actions runs the scripts.** `collect.yml` collects new items on a schedule and
+  commits them to the repo. `tests.yml` runs the tests on each push. GitHub Actions is free
+  for a public repo. A private repo uses the included usage of your GitHub plan.
+- **A scheduled task runs the agent**, in Claude or ChatGPT. Before it thinks, the agent
+  starts `collect.yml` and waits, so it always reads fresh data.
 
 ## Try it in one second
 
@@ -80,7 +90,7 @@ Your agent can do these steps for you during setup. To do them by hand:
 
 ## One run, step by step
 
-1. **Collect.** `collect.yml` runs `collect.py` on a timer. New items go to `data/items/`.
+1. **Collect.** GitHub Actions runs `collect.py` on a schedule. New items go to `data/items/`.
    Each item that the collector sees goes to `data/seen.json`, so no item is reported twice.
 2. **Freeze.** The agent runs `build_report.py pending`. This saves the exact set of new
    items to `reports/history/<date>.items.json` and prints the set.
@@ -104,7 +114,7 @@ Your agent can do these steps for you during setup. To do them by hand:
 | `report/render.py`, `report/template.html` | The HTML report. Change the look here |
 | `demo.py` | The full loop with sample data |
 | `tests/` | Offline tests: `python -m unittest discover tests` |
-| `.github/workflows/` | `collect.yml` is the timer for step 1. `tests.yml` runs the tests |
+| `.github/workflows/` | The GitHub Actions workflows. `collect.yml` is the timer for step 1. `tests.yml` runs the tests |
 
 The folders `data/`, `reports/` and `site/` appear after the first run.
 
@@ -126,8 +136,9 @@ final decision, because that is its job.
 
 ## Keep it safe
 
-- Put each API key in your CI secrets. In `config.json`, write `${MY_KEY}`, and the collector
-  reads the value from the environment. Do not commit a key.
+- Put each API key in your GitHub Actions secrets (**Settings → Secrets and variables → Actions**).
+  In `config.json`, write `${MY_KEY}`, and the collector reads the value from the environment.
+  Do not commit a key.
 - Your copy of this repo holds your data and your reports. If they are private, make the repo private.
 - The agent can push to your repo. Give it access to this repo only.
 

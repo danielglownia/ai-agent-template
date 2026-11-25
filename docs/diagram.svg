@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" width="1200" height="690" role="img" aria-labelledby="t d" font-family="-apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
   <title id="t">Scripts fetch. The LLM thinks. Git remembers.</title>
-  <desc id="d">Three steps pass their work through one Git repo. Step 1, Collect: a script on a CI schedule gets new data and commits it. Step 2, Think: a scheduled LLM agent reads the playbook and the new items, then writes a small JSON summary. Step 3, Render: a script turns items and summary into one HTML page. The page is published and a notification goes to you.</desc>
+  <desc id="d">Three steps pass their work through one Git repo. Step 1, Collect: a script on a GitHub Actions schedule gets new data and commits it. Step 2, Think: a scheduled LLM agent reads the playbook and the new items, then writes a small JSON summary. Step 3, Render: a script turns items and summary into one HTML page. The page is published and a notification goes to you.</desc>
 
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
@@ -35,7 +35,7 @@
     <tspan x="232" y="270">repeats, and commits it.</tspan>
   </text>
   <g fill="none" stroke="#2443ad" stroke-width="1.6"><circle cx="240" cy="297" r="7"/><path d="M240 293 v4 h3"/></g>
-  <text x="253" y="301" font-size="12" font-weight="600" fill="#2443ad">CI schedule</text>
+  <text x="253" y="301" font-size="12" font-weight="600" fill="#2443ad">GitHub Actions</text>
 
   <!-- 2 think (llm) -->
   <rect x="485" y="130" width="250" height="190" rx="14" fill="#fdefdc" stroke="#d9730d" stroke-width="3"/>

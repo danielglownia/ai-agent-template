@@ -2,6 +2,39 @@
 
 **Scripts fetch. The LLM thinks. Git remembers.**
 
+## Getting started
+
+**Step 1.** Create a new repo. The fast way: click **Use this template** at the top of this
+page. If your data is personal, make the repo private.
+
+**Step 2.** Copy this into your chat:
+
+```text
+Please create a scheduled report that runs <WHEN> in my repo: <OWNER>/<REPO>.
+Base it on this template: https://github.com/danielglownia/ai-agent-template
+The report answers this question: <QUESTION>
+
+On each run:
+1. Get the newest version of the repo.
+2. Open PLAYBOOK.md. Do each step, in order. Do not skip a step.
+3. Write only from the data in the repo. Do not invent facts.
+4. Commit your work and push it to the main branch. Do not open a pull request.
+5. When you are done, send me the notification text and the link to the report.
+```
+
+Replace `<WHEN>` (for example, every weekday at 7:00 AM), `<OWNER>/<REPO>` and `<QUESTION>`.
+
+Your agent does the rest: it sets up the repo for your question and creates the schedule.
+After that, each run follows `PLAYBOOK.md`, so you change the agent with a commit, not with
+a new prompt.
+
+Your chat must be able to create a scheduled task and push to your repo. See how in
+[Claude](https://code.claude.com/docs/en/routines) and
+[ChatGPT](https://learn.chatgpt.com/docs/automations). A ChatGPT task on a local project
+runs only while the desktop app is open and the computer is on.
+
+## The idea
+
 This is a template for a report that writes itself. On a schedule, an AI agent wakes up,
 reads the new data in this repo, decides what matters, and sends you an HTML report.
 You drink your coffee.
@@ -9,8 +42,6 @@ You drink your coffee.
 <p align="center">
   <img src="docs/diagram.svg" alt="Three steps pass their work through one Git repo. Collect: a script on a CI schedule gets new data. Think: a scheduled LLM agent reads the playbook and the new items, and writes a summary. Render: a script builds one HTML page. You get the report and a notification." width="100%">
 </p>
-
-## The idea
 
 An LLM is good at judgment. It is a bad cron job, a bad database and a moody web designer.
 So each part of the system gets one job:
@@ -40,40 +71,12 @@ You need Python 3.11 or later. There is nothing to install.
 
 ## Make it yours
 
-1. Click **Use this template** to make your own repo. If your data is personal, make the repo private.
-2. Edit `config.json`. Give the report a name, write the one `question` that each report
+Your agent can do these steps for you during setup. To do them by hand:
+
+1. Edit `config.json`. Give the report a name, write the one `question` that each report
    must answer, describe the `reader`, and add your `sources`.
-3. Add your own rules to the **House rules** section of `PLAYBOOK.md`.
-4. Do a test: `python collect.py`, then `python build_report.py pending`.
-5. Put the agent on a schedule.
-
-## Put the agent on a schedule
-
-The agent must be able to do three things: start on a schedule, run Python, and push to
-your repo. Then it needs only this prompt:
-
-```text
-You are the report agent for the GitHub repo <OWNER>/<REPO>.
-
-1. Get the newest version of the repo.
-2. Open PLAYBOOK.md. Do each step, in order. Do not skip a step.
-3. Write only from the data in the repo. Do not invent facts.
-4. Commit your work and push it to the main branch. Do not open a pull request.
-5. When you are done, send me the notification text and the link to the report.
-```
-
-The prompt is short on purpose. The real instructions are in `PLAYBOOK.md`, so you change
-the agent's behavior with a commit, not with a new prompt.
-
-- **Claude:** make a [scheduled task](https://code.claude.com/docs/en/routines), select your
-  repo, paste the prompt and pick a time.
-- **ChatGPT:** make a [scheduled task](https://learn.chatgpt.com/docs/automations) from a
-  Codex chat in your clone of the repo, and paste the same prompt. Let the task use the
-  network, because it must push. A task on a local project runs only while the desktop app
-  is open and the computer is on.
-
-Product menus change faster than READMEs. If a step does not agree with your screen, the
-linked page is correct.
+2. Add your own rules to the **House rules** section of `PLAYBOOK.md`.
+3. Do a test: `python collect.py`, then `python build_report.py pending`.
 
 ## One run, step by step
 
